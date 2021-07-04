@@ -74,6 +74,20 @@ Nest is [MIT licensed](LICENSE).
 
 ## Docker
 
-Сбилдили контейнер с помощью Dockerfile: docker build -t <tag-name> .
-Запустили контейнер с помошью Docker-compose: docker-compose up -d
+Сбилдить контейнер с помощью Dockerfile: docker build -t <tag-name> .
+
+Запустить контейнер с помошью Docker-compose: docker-compose up -d
+
+## ENV
+POSTGRES_HOST=
+POSTGRES_PORT=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DATABASE=
+PORT=
+MODE=
+RUN_MIGRATIONS=
+JWT_SECRET=
+TELEGRAM_TOKEN=
+
 
