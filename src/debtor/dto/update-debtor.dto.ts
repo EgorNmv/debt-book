@@ -4,6 +4,9 @@ import {
   IsOptional,
   IsNumber,
   IsDateString,
+  IsArray,
+  IsUUID,
+  IsNotEmptyObject,
 } from 'class-validator';
 import {
   DEBTOR_VALIDATE_FIELD_FOR_STRING,
@@ -13,12 +16,16 @@ import {
 import { IDebtorPassport } from '../interfaces/debtor-passport.interface';
 import { IDebtor } from '../interfaces/debtor.interface';
 
-export class CreateDebtorDto implements IDebtor, Partial<IDebtorPassport> {
+export class UpdateDebtorDto
+  implements Partial<IDebtor>, Partial<IDebtorPassport>
+{
+  @IsOptional()
   @IsString({
     message: ({ property }) => DEBTOR_VALIDATE_FIELD_FOR_STRING(property),
   })
-  firstName: string;
+  firstName?: string;
 
+  @IsOptional()
   @IsString({
     message: ({ property }) => DEBTOR_VALIDATE_FIELD_FOR_STRING(property),
   })
@@ -30,6 +37,7 @@ export class CreateDebtorDto implements IDebtor, Partial<IDebtorPassport> {
   })
   patronymic?: string;
 
+  @IsOptional()
   @IsDateString(
     {},
     {
@@ -97,4 +105,8 @@ export class CreateDebtorDto implements IDebtor, Partial<IDebtorPassport> {
     message: ({ property }) => DEBTOR_VALIDATE_FIELD_FOR_STRING(property),
   })
   note?: string;
+
+  @IsOptional()
+  @IsUUID('4', { each: true })
+  debtsIds?: string[];
 }

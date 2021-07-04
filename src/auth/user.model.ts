@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { BaseModel } from '../common-entities/base.model';
+import { BaseModel } from '../common-entities/classes/base.model';
 
 @Entity('auth')
 export class UserModel extends BaseModel {

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { DebtorService } from './debtor.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { DebtorModel } from './debtor.model';
+import { DebtorModel } from './models/debtor.model';
 import { FindDebtorDto } from './dto/find-debtor.dto';
 
 describe('DebtorService', () => {

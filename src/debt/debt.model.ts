@@ -1,23 +1,40 @@
-import { Column, Entity } from 'typeorm';
-import { BaseModel } from '../common-entities/base.model';
+import { DebtorModel } from 'src/debtor/models/debtor.model';
+import { Column, Entity, ManyToOne } from 'typeorm';
+import { BaseModel } from '../common-entities/classes/base.model';
+import { IDebt } from './debt.interface';
 
 @Entity('debt')
-export class DebtModel extends BaseModel {
+export class DebtModel extends BaseModel implements IDebt {
   @Column()
   name: string;
 
-  @Column({ type: 'varchar', nullable: true })
-  description: string | null;
+  @Column({ nullable: true })
+  description?: string;
 
-  @Column({ type: 'varchar', nullable: true })
-  notes: string | null;
+  @Column({ nullable: true })
+  note?: string;
 
-  @Column()
-  originalDebt: number;
+  @Column({ nullable: true })
+  originalAmount?: number;
 
-  @Column()
-  debtRate: number;
+  @Column({ nullable: true })
+  debtAmount?: number;
 
-  @Column()
-  repaymentDate: Date;
+  @Column({ nullable: true })
+  repaymentDate?: Date;
+
+  @ManyToOne(() => DebtorModel, (debtor) => debtor.debts, {
+    eager: true,
+    nullable: true,
+  })
+  debtor?: DebtorModel;
+
+  @Column({ nullable: true })
+  percent?: number;
+
+  @Column({ nullable: true })
+  holder?: string;
+
+  @Column('text', { array: true, nullable: true })
+  images?: string[];
 }
